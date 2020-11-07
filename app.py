@@ -10,13 +10,15 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+
+
 @app.route('/submit',methods=['POST'])
 def submit():
     path=request.form['path']
     print('path of audio file:',path)
     features=[]  
     y,sr=librosa.load(path,mono=True,duration=3)
-
+    
     length=librosa.get_duration(y=y,sr=sr)
     print(length)
     features.append(length)

@@ -4,23 +4,26 @@
         <title>
             Music Genre Predictor
         </title>
-        <style>
-            body{
-                background-color: antiquewhite;
-                font-family: Arial, Helvetica, sans-serif;
-            }
-        </style>
+        <link rel='stylesheet' href="{{ url_for('static', filename='css/index.css') }}">
     </head>
     <body>
-        <h1>
+        <h1 id='mainhead'>
+            MUSIC GENRE PREDICTOR
+        </h1>
+        <br>
+        <h1 id='sec'>
             Enter audio file path.
         </h1>
         <form method='POST' action='http://localhost:5000/submit'>
-            <input type='text' placeholder='enter the path' name='path'>
-            <button>
-                Upload
-            </button>
+            <center>
+                <input type='text' placeholder='enter the path' name='path' id='form'>
+                <br>
+                <br>
+                <button>
+                    Upload
+                </button>
+            </center>
         </form>
-        
+    </div>
     </body>
 </html>
