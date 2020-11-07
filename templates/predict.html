@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+        <title>
+            MUSIC GENRE PREDICTOR
+        </title>
+        <link rel='stylesheet' href="{{ url_for('static', filename='css/predict.css') }}">
+    </head>
+    <body>
+        <center>
+            <h1 id='genre'>
+                The Genre of the Song is {{genre}}
+            </h1>
+            <h2 id='simh'>
+                Click the button to Find similar Songs!
+            </h2>
+            <button>
+                Find
+            </button>
+        </center>
+        
+    </body>
+</html>

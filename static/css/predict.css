@@ -1,0 +1,18 @@
+body{
+    background-image: url('../images/genres.jpg');
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#genre{
+    color:antiquewhite;
+    text-align: center;
+}
+
+#simh{
+    color: antiquewhite;
+    text-align: center;
+}
+
+button{
+    text-align: center;
+}

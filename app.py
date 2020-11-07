@@ -10,15 +10,10 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-
-
-@app.route('/submit',methods=['POST'])
-def submit():
-    path=request.form['path']
-    print('path of audio file:',path)
+def predict(path):
     features=[]  
     y,sr=librosa.load(path,mono=True,duration=3)
-    
+
     length=librosa.get_duration(y=y,sr=sr)
     print(length)
     features.append(length)
@@ -71,9 +66,36 @@ def submit():
     l.append(features)
     l.append(features)
     data=np.array(l)
-    prediction = np.array2string(model.predict(data))
-    return jsonify(prediction)
+    prediction = model.predict(data)
+    if prediction[0]==0:
+        return 'Blues'
+    elif prediction[0]==1:
+        return 'Classical'
+    elif prediction[0]==2:
+        return 'Country'
+    elif prediction[0]==3:
+        return 'Disco'
+    elif prediction[0]==4:
+        return 'HipHop'
+    elif prediction[0]==5:
+        return 'Jazz'
+    elif prediction[0]==6:
+        return 'Metal'
+    elif prediction[0]==7:
+        return 'Pop'
+    elif prediction[0]==8:
+        return 'Reggae'
+    elif prediction[0]==9:
+        return 'Rock'
+    else:
+        return 'Code Not Working LMAO XD'
 
+@app.route('/submit',methods=['POST'])
+def submit():
+    path=request.form['path']
+    print('path of audio file:',path)
+    prediction=predict(path)
+    return render_template('predict.html',genre=prediction)
 
 if __name__ == '__main__':
     app.run()
