@@ -8,18 +8,53 @@
             MUSIC GENRE PREDICTOR
         </title>
         <link rel='stylesheet' href="{{ url_for('static', filename='css/predict.css') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            var genrename=localStorage.getItem('genre');
+            $(document).ready(function() {
+                document.getElementById('genre-name').innerHTML = genrename;
+            })
+            $(document).on("click","#similar",function(){
+                var path=localStorage.getItem('path')
+                $.ajax({
+                    method:"POST",
+                    url:"/similar",
+                    data:{
+                        path:path
+                    },
+                    success:data => {
+                        console.log(data);
+                        var i=0;
+                        for(i=0;i<5;i++)
+                        {
+                            var head='<h3>' +data[i]+'</h3><br><br>';
+                            path='/Users/madhuryak/Desktop/genres/'+genrename+data[i];
+                            var audio=`<audio src='/static/genres/blues/blues.00098.mp3' type='audio/mpeg' controls></audio><br>`
+                            $('#main').append(head);
+                            $('#main').append(audio);
+                        }
+                    }
+                })
+            })
+        </script>
+
     </head>
     <body>
         <center>
             <h1 id='genre'>
-                The Genre of the Song is {{genre}}
+                The Genre of the Song is <span id="genre-name"></span>
             </h1>
             <h2 id='simh'>
                 Click the button to Find similar Songs!
             </h2>
-            <button>
-                Find
-            </button>
+                <button id='similar'>
+                    Find
+                </button>
+            <div id='main'>
+            </div>
+            <audio>
+
+            </audio>
         </center>
         
     </body>

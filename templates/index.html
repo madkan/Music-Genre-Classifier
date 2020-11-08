@@ -8,6 +8,25 @@
             Music Genre Predictor
         </title>
         <link rel='stylesheet' href="{{ url_for('static', filename='css/index.css') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).on('click','#upload',function(){
+                var path=document.getElementById('form').value
+                localStorage.setItem('path',document.getElementById('form').value)
+                $.ajax({
+                    method:"POST",
+                    url:"/submit",
+                    data:{
+                        path:path
+                    },
+                    success: data => {
+                        console.log(data);
+                        localStorage.setItem('genre', data);
+                        window.location = '/predict'
+                    }
+                })
+            })
+        </script>
     </head>
     <body>
         <h1 id='mainhead'>
@@ -17,16 +36,14 @@
         <h1 id='sec'>
             Enter audio file path.
         </h1>
-        <form method='POST' action='http://localhost:5000/submit'>
             <center>
                 <input type='text' placeholder='enter the path' name='path' id='form'>
                 <br>
                 <br>
-                <button>
+                <button id='upload'>
                     Upload
                 </button>
             </center>
-        </form>
     </div>
     </body>
 </html>
