@@ -12,7 +12,7 @@ app = Flask(__name__, static_folder='static')
 
 @app.route('/index', methods=['GET'])
 def home():
-    return render_template('index.html')
+    return render_template('index1.html')
 
 def predict(path):
     features=[]  
@@ -114,7 +114,7 @@ def findsimilarsongs(name,sim_df_names):
 
 @app.route('/predict', methods=['GET'])
 def renderSimilar():
-    return render_template('predict.html')
+    return render_template('predict1.html')
 
 @app.route('/similar',methods=['POST'])
 def getsimilar():
