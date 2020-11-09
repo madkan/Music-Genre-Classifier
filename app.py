@@ -103,7 +103,6 @@ def submit():
     prediction=predict(path)
     return prediction
 
-
 def findsimilarsongs(name,sim_df_names):
     series = sim_df_names[name].sort_values(ascending = False)
     series = series.drop(name)
@@ -134,7 +133,6 @@ def getsimilar():
     print(name)
     songslist=findsimilarsongs(name,sim_df_names)
     return jsonify(songslist)
-
 
 if __name__ == '__main__':
     app.run()
